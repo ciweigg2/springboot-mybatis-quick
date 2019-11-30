@@ -1,0 +1,21 @@
+server:
+  port: 8080
+spring:
+  # 配置数据源
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3309/test?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource
+# mybatis-plus相关配置
+mybatis-plus:
+  # xml扫描，多个目录用逗号或者分号分隔（告诉 Mapper 所对应的 XML 文件位置）
+  mapper-locations: classpath:mapper/*.xml
+  global-config:
+    db-config:
+      # 非空判断(只对字符串类型字段,其他类型字段依然为非NULL判断)
+      select-strategy: not_empty
+logging:
+  level:
+    com.mxc.springbootmybatisquick.mybatis.mapper: debug
