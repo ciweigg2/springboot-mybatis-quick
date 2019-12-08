@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
+ * 电子营业执照Controller
  * @className BlController
  * @description 电子营业执照Controller
  * @author maxiucheng
@@ -35,14 +36,15 @@ public class BlController {
     private BlMsMapper blMsMapper;
     
     /**
+     * 查询电子营业执照列表
      * @author maxiucheng
      * @date 2019/11/28 12:09 下午
      * @description 查询电子营业执照列表
-     * @param mybatisPlusPage: 分页条件
+     * @param mybatisPlusPage 分页条件
      * @return {@link MyIPage<BusinessLicense>}
      **/
     @PostMapping(value = "/list")
-    public ResponseView<MyIPage<BusinessLicense>> list(@RequestBody MybatisPlusPage<BlListRequest> mybatisPlusPage) throws Exception {
+    public ResponseView<MyIPage<BusinessLicense>> list(@RequestBody MybatisPlusPage<BlListRequest> mybatisPlusPage) {
         QueryWrapper<BusinessLicense> wrapper = new QueryWrapper();
         //根据不为空的字段查询 反射复制太慢 所以采用这种方式
         BusinessLicense businessLicense = blMsMapper.BlRequestToBusinessLicense(mybatisPlusPage.getObject());
