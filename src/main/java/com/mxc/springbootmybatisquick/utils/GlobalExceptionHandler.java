@@ -1,7 +1,6 @@
 package com.mxc.springbootmybatisquick.utils;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -37,9 +36,6 @@ public class GlobalExceptionHandler {
                                            HttpServletRequest request, HttpServletResponse response) {
         log.warn("请求发生了预期异常，出错的 url [{}]，出错的描述为 [{}]",
                 request.getRequestURL().toString(), exception.getMessage());
-        if (exception.getCode() == HttpStatus.OK.value()) {
-            return ResponseView.success(exception.getMessage());
-        }
         return ResponseView.fail(exception.getMessage());
     }
 

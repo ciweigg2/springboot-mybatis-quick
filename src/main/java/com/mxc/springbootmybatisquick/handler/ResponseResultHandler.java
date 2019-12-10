@@ -45,6 +45,7 @@ public class ResponseResultHandler implements ResponseBodyAdvice<Object> {
     @Override
     public Object beforeBodyWrite(Object body, MethodParameter methodParameter, MediaType mediaType, Class<? extends HttpMessageConverter<?>> aClass, ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {
         log.info("override responseview starting");
+        log.info("接口返回数据：{}" ,body);
         if (!(body instanceof ResponseView)) {
             //如果无法转换统一返回说明请求过程是成功的
             return ResponseView.success(body);
