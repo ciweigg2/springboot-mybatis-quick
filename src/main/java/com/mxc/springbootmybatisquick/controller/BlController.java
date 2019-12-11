@@ -1,6 +1,7 @@
 package com.mxc.springbootmybatisquick.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mxc.springbootmybatisquick.annotation.ResponseResult;
 import com.mxc.springbootmybatisquick.config.MyIPage;
@@ -11,10 +12,7 @@ import com.mxc.springbootmybatisquick.mybatis.model.BusinessLicense;
 import com.mxc.springbootmybatisquick.service.BusinessLicenseService;
 import com.mxc.springbootmybatisquick.utils.ResponseView;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 电子营业执照Controller
@@ -51,6 +49,26 @@ public class BlController {
         wrapper.setEntity(businessLicense);
         Page<BusinessLicense> page = new Page<>(mybatisPlusPage.getCurrent() ,mybatisPlusPage.getSize());
         return ResponseView.success(businessLicenseService.page(page ,wrapper));
+    }
+
+    /**
+     * mybatis强大的功能
+     *
+     * @return {@link Void}
+     * @author maxiucheng
+     * @date 2019/12/11 16:54:27
+     * @description 测试
+     * @status 已发布
+     */
+    @GetMapping(value = "/test")
+    public void test(){
+//        UPDATE business_license SET ent_name='额外飞舞的地方威风威风', auth_term='123123' WHERE (bl_id = '1');
+        BusinessLicense businessLicense = new BusinessLicense();
+        businessLicense.setAuthTerm("123123");
+        businessLicense.setEntName("额外飞舞的地方威风威风");
+        LambdaUpdateWrapper<BusinessLicense> objectLambdaUpdateWrapper = new LambdaUpdateWrapper<>();
+        objectLambdaUpdateWrapper.eq(true ,BusinessLicense::getBlId ,"1");
+        businessLicenseService.update(businessLicense ,objectLambdaUpdateWrapper);
     }
     
 }
