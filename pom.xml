@@ -57,7 +57,7 @@
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.2.0</version>
+            <version>3.3.0</version>
         </dependency>
 
         <dependency>
@@ -114,7 +114,7 @@
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-extension</artifactId>
-            <version>3.2.0</version>
+            <version>3.3.0</version>
             <classifier>sources</classifier>
             <scope>test</scope>
         </dependency>
