@@ -1,7 +1,7 @@
 package com.mxc.springbootmybatisquick.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.mxc.springbootmybatisquick.mybatis.model.BusinessLicense;
+import com.mxc.springbootmybatisquick.mybatis.model.BusinessLicense;import java.util.List;
 
 /**
  * @author maxiucheng
@@ -12,5 +12,8 @@ import com.mxc.springbootmybatisquick.mybatis.model.BusinessLicense;
  **/
 public interface BusinessLicenseService extends IService<BusinessLicense> {
 
+    int updateBatchSelective(List<BusinessLicense> list);
+
 }
+
 

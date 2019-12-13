@@ -5,7 +5,7 @@ import com.mxc.springbootmybatisquick.mybatis.mapper.BusinessLicenseMapper;
 import com.mxc.springbootmybatisquick.mybatis.model.BusinessLicense;
 import com.mxc.springbootmybatisquick.service.BusinessLicenseService;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.annotation.Transactional;import java.util.List;
 
 /**
  * @author maxiucheng
@@ -18,5 +18,11 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(rollbackFor = Exception.class)
 public class BusinessLicenseServiceImpl extends ServiceImpl<BusinessLicenseMapper, BusinessLicense> implements BusinessLicenseService {
 
+    @Override
+    public int updateBatchSelective(List<BusinessLicense> list) {
+        return baseMapper.updateBatchSelective(list);
+    }
+
 }
+
 

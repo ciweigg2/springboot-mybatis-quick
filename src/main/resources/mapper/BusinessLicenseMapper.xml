@@ -16,4 +16,56 @@
     <!--@mbg.generated-->
     bl_id, ent_name, un_is_cid, `name`, oper, auth_term, image_url
   </sql>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update business_license
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="ent_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.entName != null">
+            when bl_id = #{item.blId,jdbcType=VARCHAR} then #{item.entName,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="un_is_cid = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.unIsCid != null">
+            when bl_id = #{item.blId,jdbcType=VARCHAR} then #{item.unIsCid,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`name` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.name != null">
+            when bl_id = #{item.blId,jdbcType=VARCHAR} then #{item.name,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="oper = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.oper != null">
+            when bl_id = #{item.blId,jdbcType=VARCHAR} then #{item.oper,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="auth_term = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.authTerm != null">
+            when bl_id = #{item.blId,jdbcType=VARCHAR} then #{item.authTerm,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="image_url = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.imageUrl != null">
+            when bl_id = #{item.blId,jdbcType=VARCHAR} then #{item.imageUrl,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where bl_id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.blId,jdbcType=VARCHAR}
+    </foreach>
+  </update>
 </mapper>

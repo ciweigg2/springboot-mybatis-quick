@@ -4,17 +4,16 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.io.Serializable;
 
 /**
  * @author maxiucheng
  * @className BusinessLicense
  * @description
- * @date 2019/11/30 10:36 上午
+ * @date 2019/12/13 9:53 下午
  * @menu
  **/
 @Data
