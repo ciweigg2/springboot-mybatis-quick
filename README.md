@@ -47,3 +47,7 @@ Alt+U选择类或者方法上传就行了
 mybatis-plus加载源码注释例子：https://gitee.com/sunyurepository/smart-doc/wikis/第三框架源码加载配置?sort_id=1736350
 
 文档：https://gitee.com/sunyurepository/smart-doc/wikis/Home
+
+> 动态数据源
+
+测试方法参考：https://ciweigg2.github.io/2019/12/17/springboot-dong-tai-shua-xin-shu-ju-yuan/
