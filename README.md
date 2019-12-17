@@ -48,6 +48,8 @@ mybatis-plus加载源码注释例子：https://gitee.com/sunyurepository/smart-d
 
 文档：https://gitee.com/sunyurepository/smart-doc/wikis/Home
 
+建议使用maven插件生成
+
 > 动态数据源
 
 测试方法参考：https://ciweigg2.github.io/2019/12/17/springboot-dong-tai-shua-xin-shu-ju-yuan/
