@@ -8,6 +8,8 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.web.bind.annotation.*;
 
 /**
+ * 动态数据源
+ *
  * @author maxiucheng
  * @className DynamicRefreshController
  * @description 刷新数据源
