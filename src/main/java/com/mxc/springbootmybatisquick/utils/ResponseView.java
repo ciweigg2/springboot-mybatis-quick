@@ -1,5 +1,6 @@
 package com.mxc.springbootmybatisquick.utils;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -77,6 +78,14 @@ public class ResponseView<T> implements Serializable {
 	 */
 	public static ResponseView fail(Integer code, String message) {
 		return new ResponseView((Object)null, Boolean.FALSE, code, message);
+	}
+
+	/***
+	 * 绑定分页信息
+	 * @param iPage
+	 */
+	public ResponseView bindPagination(IPage iPage){
+		return new PagingResponseView(this, iPage);
 	}
 
 }

@@ -11,51 +11,29 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * @author maxiucheng
- * @className Department
- * @description
- * @date 2019/12/20 10:35 下午
- * @menu
- **/
+ *@className Role
+ *@description
+ *@author maxiucheng
+ *@date 2019/12/20 10:35 下午
+ *@menu
+**/
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@TableName(value = "department")
-public class Department implements Serializable {
-    public static final String COL_BL_ID = "bl_id";
+@TableName(value = "role")
+public class Role implements Serializable {
     /**
      * ID
      */
-    @TableId(value = "id", type = IdType.INPUT)
-    private Long id;
+    @TableId(value = "id", type = IdType.AUTO)
+    private Integer id;
 
-    /**
-     * 上级部门ID
-     */
-    @TableField(value = "parent_id")
-    private Long parentId;
-
-    /**
-     * 单位ID
-     */
-    @TableField(value = "org_id")
-    private Long orgId;
-
-    /**
-     * 名称
-     */
     @TableField(value = "name")
     private String name;
 
-    /**
-     * 扩展字段
-     */
-    @TableField(value = "extdata")
-    private String extdata;
+    @TableField(value = "code")
+    private String code;
 
-    /**
-     * 已删除
-     */
     @TableField(value = "is_deleted")
     private Boolean isDeleted;
 
@@ -69,13 +47,9 @@ public class Department implements Serializable {
 
     public static final String COL_ID = "id";
 
-    public static final String COL_PARENT_ID = "parent_id";
-
-    public static final String COL_ORG_ID = "org_id";
-
     public static final String COL_NAME = "name";
 
-    public static final String COL_EXTDATA = "extdata";
+    public static final String COL_CODE = "code";
 
     public static final String COL_IS_DELETED = "is_deleted";
 

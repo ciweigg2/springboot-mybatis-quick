@@ -90,7 +90,7 @@ public class GlobalExceptionHandler {
     public ResponseView throwableHandler(Exception exception, HttpServletRequest request, HttpServletResponse response) {
         log.error(MessageFormat.format("请求发生了非预期异常，出错的 url [{0}]，出错的描述为 [{1}]",
                 request.getRequestURL().toString(), exception.getMessage()), exception);
-        return ResponseView.fail(EnumExceptionMessageWebMvc.UNEXPECTED_ERROR.getMessage());
+        return ResponseView.fail(exception.getMessage());
     }
 
 }

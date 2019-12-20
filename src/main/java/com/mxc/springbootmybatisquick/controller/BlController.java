@@ -2,20 +2,14 @@ package com.mxc.springbootmybatisquick.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.diboot.core.binding.QueryBuilder;
-import com.diboot.core.binding.RelationsBinder;
-import com.diboot.core.service.DictionaryService;
 import com.mxc.springbootmybatisquick.annotation.ResponseResult;
 import com.mxc.springbootmybatisquick.config.MyIPage;
 import com.mxc.springbootmybatisquick.config.MybatisPlusPage;
 import com.mxc.springbootmybatisquick.model.BlListRequest;
-import com.mxc.springbootmybatisquick.model.BusinessLicenseDto;
-import com.mxc.springbootmybatisquick.model.BusinessLicenseVo;
 import com.mxc.springbootmybatisquick.model.mapstruct.BlMsMapper;
 import com.mxc.springbootmybatisquick.mybatis.model.BusinessLicense;
 import com.mxc.springbootmybatisquick.service.BusinessLicenseService;
 import com.mxc.springbootmybatisquick.utils.ResponseView;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.testng.collections.Lists;
@@ -42,9 +36,6 @@ public class BlController {
     @Autowired
     private BlMsMapper blMsMapper;
 
-    @Autowired
-    private DictionaryService dictionaryService;
-
     /**
      * 查询电子营业执照列表
      *
@@ -56,16 +47,12 @@ public class BlController {
      **/
     @PostMapping(value = "/list")
     public ResponseView<MyIPage<BusinessLicense>> list(@RequestBody MybatisPlusPage<BlListRequest> mybatisPlusPage) {
-        BlListRequest object = mybatisPlusPage.getObject();
-        BusinessLicenseDto businessLicenseDto = new BusinessLicenseDto();
-        BeanUtils.copyProperties(object ,businessLicenseDto);
-        QueryWrapper<BusinessLicense> wrapper = QueryBuilder.toQueryWrapper(businessLicenseDto);
-        wrapper.nested(i -> i.eq("name", "测试").or().ne("ent_name", "1")).eq("bl_id" ,"123");
+        QueryWrapper<BusinessLicense> wrapper = new QueryWrapper();
         //根据不为空的字段查询 反射复制太慢 所以采用这种方式
         BusinessLicense businessLicense = blMsMapper.BlRequestToBusinessLicense(mybatisPlusPage.getObject());
+        wrapper.setEntity(businessLicense);
         Page<BusinessLicense> page = new Page<>(mybatisPlusPage.getCurrent(), mybatisPlusPage.getSize());
-        List<BusinessLicenseVo> businessLicenseVos = RelationsBinder.convertAndBind(businessLicenseService.page(page, null).getRecords(), BusinessLicenseVo.class);
-        return ResponseView.success(businessLicenseVos);
+        return ResponseView.success(businessLicenseService.page(page, wrapper));
     }
 
     /**
