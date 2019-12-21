@@ -2,6 +2,7 @@ package com.mxc.springbootmybatisquick.model.dto;
 
 import com.diboot.core.binding.query.BindQuery;
 import com.diboot.core.binding.query.Comparison;
+import com.mxc.springbootmybatisquick.mybatis.model.User;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -25,19 +26,19 @@ public class UserDTO implements Serializable {
     /**
      * 性别
      */
-    @BindQuery(comparison = Comparison.IN, field = "gender")
+    @BindQuery(comparison = Comparison.IN, field = User.COL_GENDER)
     private String[] genders;
 
     /**
      * 创建开始时间
      */
-    @BindQuery(comparison = Comparison.BETWEEN_BEGIN, field = "create_time")
+    @BindQuery(comparison = Comparison.BETWEEN_BEGIN, field = User.COL_CREATE_TIME)
     private Date createTimeBegin;
 
     /**
      * 创建结束时间
      */
-    @BindQuery(comparison = Comparison.BETWEEN_END, field = "create_time")
+    @BindQuery(comparison = Comparison.BETWEEN_END, field = User.COL_CREATE_TIME)
     private Date createTimeEnd;
 
 }

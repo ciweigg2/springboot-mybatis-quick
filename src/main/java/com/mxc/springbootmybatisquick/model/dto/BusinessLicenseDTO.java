@@ -2,6 +2,7 @@ package com.mxc.springbootmybatisquick.model.dto;
 
 import com.diboot.core.binding.query.BindQuery;
 import com.diboot.core.binding.query.Comparison;
+import com.mxc.springbootmybatisquick.mybatis.model.BusinessLicense;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -24,19 +25,19 @@ public class BusinessLicenseDTO implements Serializable {
     /**
      * 法定代表人
      */
-    @BindQuery(comparison = Comparison.IN, field = "name")
+    @BindQuery(comparison = Comparison.IN, field = BusinessLicense.COL_NAME)
     private String names;
 
     /**
      * 授权书截止日期 开始
      */
-    @BindQuery(comparison = Comparison.BETWEEN_BEGIN, field = "auth_term")
+    @BindQuery(comparison = Comparison.BETWEEN_BEGIN, field = BusinessLicense.COL_AUTH_TERM)
     private String authTermBegin;
 
     /**
      * 授权书截止日期 截止
      */
-    @BindQuery(comparison = Comparison.BETWEEN_END, field = "auth_term")
+    @BindQuery(comparison = Comparison.BETWEEN_END, field = BusinessLicense.COL_AUTH_TERM)
     private String authTermEnd;
 
 }
