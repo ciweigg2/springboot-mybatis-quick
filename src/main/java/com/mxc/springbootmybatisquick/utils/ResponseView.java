@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.Arrays;
+import java.util.List;
 
 /**
  * 通用返回包装
@@ -93,7 +93,7 @@ public class ResponseView<T> implements Serializable {
      */
     public ResponseView bindPagination(Page page) {
         MyIPage myIPage = MyIPageMapper.INSTANCE.pageToMyIPage(page);
-        myIPage.setRecords(Arrays.asList(result));
+        myIPage.setRecords((List)result);
         return new ResponseView(myIPage, success, code, message);
     }
 
