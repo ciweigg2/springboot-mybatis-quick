@@ -69,7 +69,7 @@ public class DibootController {
         // 自动转换VO中注解绑定的关联
         List<BusinessLicenseListVO> voList = RelationsBinder.convertAndBind(businessLicensePage.getRecords(), BusinessLicenseListVO.class);
         // 返回结果
-        return ResponseView.success(voList).bindPagination(businessLicensePage);
+        return ResponseView.success(voList).bindPagination(page);
     }
 
     /**
