@@ -10,12 +10,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- *@className UserRole
- *@description
- *@author maxiucheng
- *@date 2019/12/20 10:35 下午
- *@menu
-**/
+ * @author maxiucheng
+ * @className UserRole
+ * @description
+ * @date 2019/12/21 4:05 下午
+ * @menu
+ **/
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

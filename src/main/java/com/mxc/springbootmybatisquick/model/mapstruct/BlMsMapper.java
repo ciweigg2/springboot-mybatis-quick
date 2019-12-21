@@ -9,7 +9,6 @@ import org.mapstruct.Mapper;
  * @className BlMapper
  * @description 电子营业执照查询列表参数映射
  * @date 2019/11/29 10:29 上午
- * @menu
  **/
 @Mapper(componentModel = "spring")
 public interface BlMsMapper {

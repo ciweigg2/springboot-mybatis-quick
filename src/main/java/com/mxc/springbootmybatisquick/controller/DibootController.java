@@ -6,12 +6,17 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.diboot.core.binding.QueryBuilder;
 import com.diboot.core.binding.RelationsBinder;
 import com.mxc.springbootmybatisquick.config.MybatisPlusPage;
-import com.mxc.springbootmybatisquick.model.*;
+import com.mxc.springbootmybatisquick.model.dto.BusinessLicenseDTO;
+import com.mxc.springbootmybatisquick.model.dto.UserDTO;
+import com.mxc.springbootmybatisquick.model.vo.BusinessLicenseListVO;
+import com.mxc.springbootmybatisquick.model.vo.BusinessLicenseVO;
+import com.mxc.springbootmybatisquick.model.vo.UserVO;
 import com.mxc.springbootmybatisquick.mybatis.model.BusinessLicense;
 import com.mxc.springbootmybatisquick.mybatis.model.User;
 import com.mxc.springbootmybatisquick.service.BusinessLicenseService;
 import com.mxc.springbootmybatisquick.service.UserService;
 import com.mxc.springbootmybatisquick.utils.BusinessException;
+import com.mxc.springbootmybatisquick.utils.PagingResponseView;
 import com.mxc.springbootmybatisquick.utils.ResponseView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -29,7 +34,7 @@ import java.util.Optional;
  * @className DibootController
  * @description Diboot测试接口
  * @date 2019/12/20 2:01 下午
- * @menu
+ * @menu diboot
  **/
 @RestController
 @RequestMapping(value = "/diboot")
@@ -42,17 +47,24 @@ public class DibootController {
     @Autowired
     private UserService userService;
 
-    /***
+    /**
      * 查询VO的分页数据，此例同时示例DTO自动绑定转换为QueryWrapper，查询条件为空不会拼接的 （简单版）
-     * @return
-     * @throws Exception
+     *
+     * @param mybatisPlusPage mybatis +页面
+     * @return {@link PagingResponseView<List<BusinessLicenseListVO>>  }
+     * @author maxiucheng
+     * @date 2019/12/21 10:59:23
+     * @description 查询VO的分页数据，此例同时示例DTO自动绑定转换为QueryWrapper，查询条件为空不会拼接的 （简单版）
+     * @status 已发布
      */
     @PostMapping("/listWithDto")
-    public ResponseView<BusinessLicenseVO> getVOListWithDTO(@RequestBody MybatisPlusPage<BusinessLicenseDTO> mybatisPlusPage) {
+    public PagingResponseView<List<BusinessLicenseListVO>> getVOListWithDTO(@RequestBody MybatisPlusPage<BusinessLicenseDTO> mybatisPlusPage) {
         // DTO转换为QueryWrapper，若无@BindQuery注解默认映射为等于=条件，有注解映射为注解条件。
         QueryWrapper<BusinessLicense> queryWrapper = QueryBuilder.toQueryWrapper(mybatisPlusPage.getObject());
         // 查询当前页的Entity主表数据
         Page<BusinessLicense> page = new Page<>(mybatisPlusPage.getCurrent(), mybatisPlusPage.getSize());
+        //排序
+        page.setOrders(mybatisPlusPage.getOrders());
         Page<BusinessLicense> businessLicensePage = businessLicenseService.page(page, queryWrapper);
         // 自动转换VO中注解绑定的关联
         List<BusinessLicenseListVO> voList = RelationsBinder.convertAndBind(businessLicensePage.getRecords(), BusinessLicenseListVO.class);
@@ -60,17 +72,24 @@ public class DibootController {
         return ResponseView.success(voList).bindPagination(businessLicensePage);
     }
 
-    /***
+    /**
      * 查询VO的分页数据，此例同时示例DTO自动绑定转换为QueryWrapper，查询条件为空不会拼接的 （复杂版）
-     * @return
-     * @throws Exception
+     *
+     * @param mybatisPlusPage mybatis +页面
+     * @return {@link PagingResponseView<List<UserVO>> }
+     * @author maxiucheng
+     * @date 2019/12/21 10:59:56
+     * @description 查询VO的分页数据，此例同时示例DTO自动绑定转换为QueryWrapper，查询条件为空不会拼接的 （复杂版）
+     * @status 已发布
      */
     @PostMapping("/listWithDto2")
-    public ResponseView<UserVO> getVOListWithDTO2(@RequestBody MybatisPlusPage<UserDTO> mybatisPlusPage) {
+    public PagingResponseView<List<UserVO>> getVOListWithDTO2(@RequestBody MybatisPlusPage<UserDTO> mybatisPlusPage) {
         // DTO转换为QueryWrapper，若无@BindQuery注解默认映射为等于=条件，有注解映射为注解条件。
         QueryWrapper<User> queryWrapper = QueryBuilder.toQueryWrapper(mybatisPlusPage.getObject());
         // 查询当前页的Entity主表数据
         Page<User> page = new Page<>(mybatisPlusPage.getCurrent(), mybatisPlusPage.getSize());
+        //排序
+        page.setOrders(mybatisPlusPage.getOrders());
         Page<User> userPage = userService.page(page, queryWrapper);
         // 自动转换VO中注解绑定的关联
         List<UserVO> voList = RelationsBinder.convertAndBind(userPage.getRecords(), UserVO.class);
@@ -81,15 +100,15 @@ public class DibootController {
     /**
      * 查询返回自定义vo 不继承数据库bean的方式
      *
-     * @param blId 提单Id
-     * @return {@link ResponseView }
+     * @param blId 电子营业执照主键
+     * @return {@link ResponseView<List<BusinessLicenseVO>> }
      * @author maxiucheng
      * @date 2019/12/20 18:04:31
-     * @description 选择签证官
+     * @description 查询返回自定义vo 不继承数据库bean的方式
      * @status 已发布
      */
     @PostMapping(value = "/selectVo")
-    public ResponseView<List<BusinessLicenseVO> > selectVo(@RequestParam(value = "blId") @NotEmpty(message = "blId不能为空") String blId){
+    public ResponseView<List<BusinessLicenseVO>> selectVo(@RequestParam(value = "blId") @NotEmpty(message = "blId不能为空") String blId){
         //测试单条记录
         BusinessLicense businessLicense = businessLicenseService.getById(blId);
         Optional.ofNullable(businessLicense).orElseThrow(()->new BusinessException("未查询到数据"));

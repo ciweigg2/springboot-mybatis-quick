@@ -2,7 +2,6 @@ package com.mxc.springbootmybatisquick.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.mxc.springbootmybatisquick.annotation.ResponseResult;
 import com.mxc.springbootmybatisquick.config.MyIPage;
 import com.mxc.springbootmybatisquick.config.MybatisPlusPage;
 import com.mxc.springbootmybatisquick.model.BlListRequest;
@@ -11,10 +10,10 @@ import com.mxc.springbootmybatisquick.mybatis.model.BusinessLicense;
 import com.mxc.springbootmybatisquick.service.BusinessLicenseService;
 import com.mxc.springbootmybatisquick.utils.ResponseView;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-import org.testng.collections.Lists;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 电子营业执照Controller
@@ -27,7 +26,6 @@ import java.util.List;
  **/
 @RestController
 @RequestMapping(value = "/api")
-@ResponseResult
 public class BlController {
 
     @Autowired
@@ -53,36 +51,6 @@ public class BlController {
         wrapper.setEntity(businessLicense);
         Page<BusinessLicense> page = new Page<>(mybatisPlusPage.getCurrent(), mybatisPlusPage.getSize());
         return ResponseView.success(businessLicenseService.page(page, wrapper));
-    }
-
-    /**
-     * mybatis强大的功能
-     *
-     * @return {@link Void}
-     * @author maxiucheng
-     * @date 2019/12/11 16:54:27
-     * @description 测试
-     * @status 已发布
-     */
-    @GetMapping(value = "/test")
-    public void test() {
-//        UPDATE business_license SET ent_name='额外飞舞的地方威风威风', auth_term='123123' WHERE (bl_id = '1');
-//        BusinessLicense businessLicense = new BusinessLicense();
-//        businessLicense.setAuthTerm("123123");
-//        businessLicense.setEntName("额外飞舞的地方威风威风");
-//        LambdaUpdateWrapper<BusinessLicense> objectLambdaUpdateWrapper = new LambdaUpdateWrapper<>();
-//        objectLambdaUpdateWrapper.eq(true ,BusinessLicense::getBlId ,"1");
-//        businessLicenseService.update(businessLicense ,objectLambdaUpdateWrapper);
-        //update business_license set ent_name = case when bl_id = '0' then '撒大声地所的多多' when bl_id = '1' then '撒大声地所的多多' when bl_id = '2' then '撒大声地所的多多' when bl_id = '3' then '撒大声地所的多多' when bl_id = '4' then '撒大声地所的多多' end
-        // WHERE bl_id in ( '0' , '1' , '2' , '3' , '4' );
-        List<BusinessLicense> businessLicenseList = Lists.newArrayList();
-        for (int i = 0; i < 5; i++) {
-            BusinessLicense businessLicense = new BusinessLicense();
-            businessLicense.setBlId(String.valueOf(i));
-            businessLicense.setEntName("撒大声地所的多多");
-            businessLicenseList.add(businessLicense);
-        }
-        businessLicenseService.updateBatchSelective(businessLicenseList);
     }
 
 }

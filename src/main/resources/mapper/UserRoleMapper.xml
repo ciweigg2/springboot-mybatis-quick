@@ -7,4 +7,13 @@
     <id column="user_id" jdbcType="INTEGER" property="userId" />
     <id column="role_id" jdbcType="INTEGER" property="roleId" />
   </resultMap>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update user_role
+    <trim prefix="set" suffixOverrides="," />
+    where user_id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.userId,jdbcType=INTEGER}
+    </foreach>
+  </update>
 </mapper>

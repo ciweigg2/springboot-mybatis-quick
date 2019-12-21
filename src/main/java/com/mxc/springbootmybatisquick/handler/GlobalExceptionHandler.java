@@ -1,5 +1,8 @@
-package com.mxc.springbootmybatisquick.utils;
+package com.mxc.springbootmybatisquick.handler;
 
+import com.mxc.springbootmybatisquick.utils.BusinessException;
+import com.mxc.springbootmybatisquick.utils.EnumExceptionMessageWebMvc;
+import com.mxc.springbootmybatisquick.utils.ResponseView;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
@@ -9,7 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.text.MessageFormat;
 
 /**
@@ -28,12 +30,10 @@ public class GlobalExceptionHandler {
      *
      * @param exception 业务异常
      * @param request   http request
-     * @param response  http response
      * @return 异常处理结果
      */
     @ExceptionHandler(value = BusinessException.class)
-    public ResponseView extensionException(BusinessException exception,
-                                           HttpServletRequest request, HttpServletResponse response) {
+    public ResponseView extensionException(BusinessException exception, HttpServletRequest request) {
         log.warn("请求发生了预期异常，出错的 url [{}]，出错的描述为 [{}]",
                 request.getRequestURL().toString(), exception.getMessage());
         return ResponseView.fail(exception.getMessage());
@@ -56,7 +56,6 @@ public class GlobalExceptionHandler {
      *
      * @param exception Spring Web 异常
      * @param request   http request
-     * @param response  http response
      * @return 异常处理结果
      */
     @ExceptionHandler(value = {
@@ -64,7 +63,7 @@ public class GlobalExceptionHandler {
             HttpRequestMethodNotSupportedException.class,
             HttpMediaTypeNotSupportedException.class
     })
-    public ResponseView springWebExceptionHandler(Exception exception, HttpServletRequest request, HttpServletResponse response) {
+    public ResponseView springWebExceptionHandler(Exception exception, HttpServletRequest request) {
         log.error(MessageFormat.format("请求发生了非预期异常，出错的 url [{0}]，出错的描述为 [{1}]",
                 request.getRequestURL().toString(), exception.getMessage()), exception);
         if (exception instanceof NoHandlerFoundException) {
@@ -83,11 +82,10 @@ public class GlobalExceptionHandler {
      *
      * @param exception 全局异常
      * @param request   http request
-     * @param response  http response
      * @return 异常处理结果
      */
     @ExceptionHandler(value = Throwable.class)
-    public ResponseView throwableHandler(Exception exception, HttpServletRequest request, HttpServletResponse response) {
+    public ResponseView throwableHandler(Exception exception, HttpServletRequest request) {
         log.error(MessageFormat.format("请求发生了非预期异常，出错的 url [{0}]，出错的描述为 [{1}]",
                 request.getRequestURL().toString(), exception.getMessage()), exception);
         return ResponseView.fail(exception.getMessage());

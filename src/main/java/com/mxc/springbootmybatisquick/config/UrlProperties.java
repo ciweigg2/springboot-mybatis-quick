@@ -11,7 +11,6 @@ import java.io.Serializable;
  * @className UrlProperties
  * @description 第三方请求接口通用url封装
  * @date 2019/11/29 3:23 下午
- * @menu
  **/
 @Data
 @ConfigurationProperties(prefix = "third.party.url")

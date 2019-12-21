@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
  * @author maxiucheng
  * @className BusinessLicense
  * @description
- * @date 2019/12/13 9:53 下午
+ * @date 2019/12/21 4:05 下午
  * @menu
  **/
 @Data

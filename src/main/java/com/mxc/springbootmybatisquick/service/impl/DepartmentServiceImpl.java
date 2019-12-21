@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.mxc.springbootmybatisquick.mybatis.mapper.DepartmentMapper;
 import com.mxc.springbootmybatisquick.mybatis.model.Department;
 import com.mxc.springbootmybatisquick.service.DepartmentService;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Service;import java.util.List;
 
 /**
  * @author maxiucheng
@@ -16,7 +16,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class DepartmentServiceImpl extends ServiceImpl<DepartmentMapper, Department> implements DepartmentService {
 
+    @Override
+    public int updateBatchSelective(List<Department> list) {
+        return baseMapper.updateBatchSelective(list);
+    }
 }
+
+
+
+
 
 
 

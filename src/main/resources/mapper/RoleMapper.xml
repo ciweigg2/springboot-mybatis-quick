@@ -7,11 +7,49 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="code" jdbcType="VARCHAR" property="code" />
-    <result column="is_deleted" jdbcType="BOOLEAN" property="isDeleted" />
+    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     id, `name`, code, is_deleted, create_time
   </sql>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update role
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="`name` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.name != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.name,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="code = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.code != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.code,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="is_deleted = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.isDeleted != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.isDeleted,jdbcType=TINYINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="create_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.createTime != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.createTime,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=INTEGER}
+    </foreach>
+  </update>
 </mapper>

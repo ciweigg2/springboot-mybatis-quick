@@ -1,4 +1,4 @@
-package com.mxc.springbootmybatisquick.model;
+package com.mxc.springbootmybatisquick.model.vo;
 
 import com.diboot.core.binding.annotation.BindDict;
 import lombok.Data;
@@ -10,7 +10,6 @@ import java.io.Serializable;
  * @className BusinessLicenseVo
  * @description 测试不继承自定义字典获取值
  * @date 2019/12/19 4:18 下午
- * @menu
  **/
 @Data
 public class BusinessLicenseVO implements Serializable {

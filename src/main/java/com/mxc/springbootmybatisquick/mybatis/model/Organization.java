@@ -11,12 +11,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- *@className Organization
- *@description
- *@author maxiucheng
- *@date 2019/12/20 10:35 下午
- *@menu
-**/
+ * @author maxiucheng
+ * @className Organization
+ * @description
+ * @date 2019/12/21 4:05 下午
+ * @menu
+ **/
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -50,7 +50,7 @@ public class Organization implements Serializable {
      * 是否有效
      */
     @TableField(value = "is_deleted")
-    private Boolean isDeleted;
+    private Byte isDeleted;
 
     /**
      * 创建时间

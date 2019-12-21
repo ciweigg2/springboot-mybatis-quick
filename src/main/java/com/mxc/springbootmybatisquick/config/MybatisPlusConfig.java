@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Configuration;
  * @className MybatisPlusConfig
  * @description
  * @date 2019/11/28 5:24 下午
- * @menu
  **/
 @Configuration
 @MapperScan(basePackages = "com.mxc.springbootmybatisquick.mybatis.mapper")

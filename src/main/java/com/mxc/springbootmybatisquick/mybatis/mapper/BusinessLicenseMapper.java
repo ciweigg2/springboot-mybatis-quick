@@ -8,11 +8,9 @@ import java.util.List;
  * @author maxiucheng
  * @className BusinessLicenseMapper
  * @description
- * @date 2019/12/13 9:53 下午
+ * @date 2019/12/21 4:05 下午
  * @menu
  **/
 public interface BusinessLicenseMapper extends BaseMapper<BusinessLicense> {
-
     int updateBatchSelective(List<BusinessLicense> list);
-
 }

@@ -9,7 +9,6 @@ import java.io.Serializable;
  * @className BlListRequest
  * @description 查询列表请求参数
  * @date 2019/11/28 5:48 下午
- * @menu
  **/
 @Data
 public class BlListRequest implements Serializable {

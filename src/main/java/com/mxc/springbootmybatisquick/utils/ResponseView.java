@@ -1,6 +1,6 @@
 package com.mxc.springbootmybatisquick.utils;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -82,10 +82,10 @@ public class ResponseView<T> implements Serializable {
 
 	/***
 	 * 绑定分页信息
-	 * @param iPage
+	 * @param page
 	 */
-	public ResponseView bindPagination(IPage iPage){
-		return new PagingResponseView(this, iPage);
+	public PagingResponseView bindPagination(Page page){
+		return new PagingResponseView(this, page);
 	}
 
 }

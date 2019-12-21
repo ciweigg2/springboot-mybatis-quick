@@ -8,11 +8,56 @@
     <result column="parent_id" jdbcType="INTEGER" property="parentId" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="telphone" jdbcType="VARCHAR" property="telphone" />
-    <result column="is_deleted" jdbcType="BOOLEAN" property="isDeleted" />
+    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     id, parent_id, `name`, telphone, is_deleted, create_time
   </sql>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update organization
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="parent_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.parentId != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.parentId,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`name` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.name != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.name,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="telphone = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.telphone != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.telphone,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="is_deleted = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.isDeleted != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.isDeleted,jdbcType=TINYINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="create_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.createTime != null">
+            when id = #{item.id,jdbcType=INTEGER} then #{item.createTime,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=INTEGER}
+    </foreach>
+  </update>
 </mapper>

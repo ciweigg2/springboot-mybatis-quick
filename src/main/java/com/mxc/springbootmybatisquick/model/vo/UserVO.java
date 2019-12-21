@@ -1,4 +1,4 @@
-package com.mxc.springbootmybatisquick.model;
+package com.mxc.springbootmybatisquick.model.vo;
 
 import com.diboot.core.binding.annotation.BindDict;
 import com.diboot.core.binding.annotation.BindEntity;
@@ -17,31 +17,48 @@ import java.util.List;
  * @className UserVO
  * @description
  * @date 2019/12/20 10:36 下午
- * @menu
  **/
 @Data
 public class UserVO extends User {
 
     //会将business_license的主键查出来后用in主键的方式查询关联表 如果查询不到显示null start
 
+    /**
+     * 性别
+     */
     // 绑定数据字典枚举
     @BindDict(type="GENDER", field = "gender")
     private String genderLabel;
 
+    /**
+     * 部门名称
+     */
     // 字段关联
     @BindField(entity= Department.class, field="name", condition="this.department_id=id AND parent_id IS NOT NULL")
     private String deptName;
 
+    /**
+     * 单位名称
+     */
     // 支持级联字段关联，相同条件的entity+condition将合并为一条SQL查询
     @BindField(entity = Organization.class, field="name", condition="this.department_id=department.id AND department.org_id=id")
     private String orgName;
+    /**
+     * 单位电话
+     */
     @BindField(entity = Organization.class, field="telphone", condition="this.department_id=department.id AND department.org_id=id")
     private String orgTelphone;
 
+    /**
+     * 组织单位
+     */
     // 通过中间表关联Entity
-    @BindEntity(entity = Organization.class, condition = "this.department_id=department.id AND department.org_id=id")
+    @BindEntity(entity = Organization.class, condition = "this.department_id=department.id AND department.org_id=id AND department.is_deleted=0")
     private Organization organization;
 
+    /**
+     * 角色列表
+     */
     // 支持通过中间表的多-多Entity实体关联
     @BindEntityList(entity = Role.class, condition="this.id=user_role.user_id AND user_role.role_id=id")
     private List<Role> roleList;

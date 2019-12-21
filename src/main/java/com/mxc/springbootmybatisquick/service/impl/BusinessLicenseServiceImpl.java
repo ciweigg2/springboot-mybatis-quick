@@ -22,7 +22,7 @@ public class BusinessLicenseServiceImpl extends ServiceImpl<BusinessLicenseMappe
     public int updateBatchSelective(List<BusinessLicense> list) {
         return baseMapper.updateBatchSelective(list);
     }
-
 }
+
 
 

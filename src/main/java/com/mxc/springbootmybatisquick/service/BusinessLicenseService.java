@@ -13,7 +13,7 @@ import com.mxc.springbootmybatisquick.mybatis.model.BusinessLicense;import java.
 public interface BusinessLicenseService extends IService<BusinessLicense> {
 
     int updateBatchSelective(List<BusinessLicense> list);
-
 }
+
 
 

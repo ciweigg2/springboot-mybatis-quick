@@ -1,7 +1,7 @@
 package com.mxc.springbootmybatisquick.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.mxc.springbootmybatisquick.mybatis.model.Department;
+import com.mxc.springbootmybatisquick.mybatis.model.Department;import java.util.List;
 
 /**
  * @author maxiucheng
@@ -12,7 +12,12 @@ import com.mxc.springbootmybatisquick.mybatis.model.Department;
  **/
 public interface DepartmentService extends IService<Department> {
 
+    int updateBatchSelective(List<Department> list);
 }
+
+
+
+
 
 
 

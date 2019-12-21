@@ -11,12 +11,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- *@className Role
- *@description
- *@author maxiucheng
- *@date 2019/12/20 10:35 下午
- *@menu
-**/
+ * @author maxiucheng
+ * @className Role
+ * @description
+ * @date 2019/12/21 4:05 下午
+ * @menu
+ **/
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -35,7 +35,7 @@ public class Role implements Serializable {
     private String code;
 
     @TableField(value = "is_deleted")
-    private Boolean isDeleted;
+    private Byte isDeleted;
 
     /**
      * 创建时间

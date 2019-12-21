@@ -1,4 +1,4 @@
-package com.mxc.springbootmybatisquick.model;
+package com.mxc.springbootmybatisquick.model.dto;
 
 import com.diboot.core.binding.query.BindQuery;
 import com.diboot.core.binding.query.Comparison;
@@ -11,7 +11,6 @@ import java.io.Serializable;
  * @className BusinessLicenseDto
  * @description 查询条件
  * @date 2019/12/19 10:09 上午
- * @menu
  **/
 @Data
 public class BusinessLicenseDTO implements Serializable {
