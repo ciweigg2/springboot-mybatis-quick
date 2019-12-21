@@ -42,10 +42,10 @@ Alt+U选择类或者方法上传就行了
 
 > smart-doc文档
 
-也可以使用smart-doc生成文档和postman请求数据 这边使用它生成postman请求数据 在test目录有例子而且可以很好的加载源码目录的注释
+暂时使用smart-doc生成postman请求例子 smart-doc生成文档并不好用推荐使用yapi 建议使用maven插件生成
 
-mybatis-plus加载源码注释例子：https://gitee.com/sunyurepository/smart-doc/wikis/第三框架源码加载配置?sort_id=1736350
+> Diboot自动化开发框架
 
-文档：https://gitee.com/sunyurepository/smart-doc/wikis/Home
+封装了通用的mybatis-plus查询条件 返回分页转换vo返回多表关联的数据 绑定数据字典枚举 比如gender=M显示M对应的性别
 
-建议使用maven插件生成
+使用教程：https://www.diboot.com/guide/diboot-core/%E5%AE%89%E8%A3%85.html
