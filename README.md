@@ -18,7 +18,6 @@ YapiUpload插件配置单模块项目 .idea中misc.xml添加下面内容
   <option name="yapiUrl">http://localhost:3000</option>
   <option name="projectType">api</option>
   <option name="attachUploadUrl">http://localhost/fileupload</option>
-  <option name="returnClass">com.mxc.springbootmybatisquick.utils.ResponseView</option>
 </component>
 ```
 
