@@ -77,11 +77,11 @@ public class ResponseView<T> implements Serializable {
 	 * @return 返回success为false的结果
 	 */
 	public static ResponseView fail(Integer code, String message) {
-		return new ResponseView((Object)null, Boolean.FALSE, code, message);
+		return new ResponseView(null, Boolean.FALSE, code, message);
 	}
 
 	/***
-	 * 绑定分页信息
+	 * 绑定分页信息 因为ResponseView是父类 所以子类的属性父类同样享受
 	 * @param page
 	 */
 	public PagingResponseView bindPagination(Page page){
