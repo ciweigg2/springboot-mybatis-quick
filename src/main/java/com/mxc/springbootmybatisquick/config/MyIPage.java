@@ -1,8 +1,10 @@
 package com.mxc.springbootmybatisquick.config;
 
 import lombok.Data;
+import org.testng.collections.Lists;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author maxiucheng
@@ -34,8 +36,8 @@ public class MyIPage<T> implements Serializable {
     private long pages;
 
     /**
-     * 对象信息
+     * 查询数据列表
      */
-    private T object;
+    private List<T> records = Lists.newArrayList();
 
 }
