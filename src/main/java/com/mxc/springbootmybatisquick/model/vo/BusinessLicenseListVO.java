@@ -23,11 +23,6 @@ public class BusinessLicenseListVO extends BusinessLicense implements Serializab
     @BindDict(type = "CODE", field = "unIsCid")
     private String unIsCidName;
 
-    /**
-     * 统一社会信用代码
-     */
-    private String unIsCid;
-
     //会将business_license的主键查出来后用in主键的方式查询关联表 如果查询不到显示null start
 
     /**
