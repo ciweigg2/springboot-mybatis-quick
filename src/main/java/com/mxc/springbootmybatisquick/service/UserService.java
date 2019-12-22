@@ -12,7 +12,6 @@ import com.baomidou.mybatisplus.extension.service.IService;import java.util.List
  **/
 public interface UserService extends IService<User> {
 
-
     int updateBatchSelective(List<User> list);
 }
 

@@ -12,7 +12,6 @@ import com.baomidou.mybatisplus.extension.service.IService;import java.util.List
  **/
 public interface OrganizationService extends IService<Organization> {
 
-
     int updateBatchSelective(List<Organization> list);
 }
 
