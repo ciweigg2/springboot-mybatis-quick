@@ -167,4 +167,27 @@ INSERT INTO `user_role` VALUES (1001, 102);
 INSERT INTO `user_role` VALUES (1002, 102);
 COMMIT;
 
+-- ----------------------------
+-- Table structure for datasource
+-- ----------------------------
+DROP TABLE IF EXISTS `datasource`;
+CREATE TABLE `datasource` (
+                              `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '数据源编号',
+                              `drive_class_name` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '驱动名',
+                              `url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '数据库地址',
+                              `user_name` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '用户名',
+                              `password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '密码',
+                              `poll_name` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '数据源名称(必须存在一个master)',
+                              PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ----------------------------
+-- Records of datasource
+-- ----------------------------
+BEGIN;
+INSERT INTO `datasource` VALUES (1, 'com.mysql.cj.jdbc.Driver', 'jdbc:mysql://127.0.0.1:3309/bl2?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2b8&allowPublicKeyRetrieval=true', 'root', '123456', 'master');
+INSERT INTO `datasource` VALUES (2, 'com.mysql.cj.jdbc.Driver', 'jdbc:mysql://127.0.0.1:3309/bl3?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2b8&allowPublicKeyRetrieval=true', 'root', '123456', 'bl3');
+INSERT INTO `datasource` VALUES (3, 'com.mysql.cj.jdbc.Driver', 'jdbc:mysql://127.0.0.1:3309/bl?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2b8&allowPublicKeyRetrieval=true', 'root', '123456', 'bl');
+COMMIT;
+
 SET FOREIGN_KEY_CHECKS = 1;

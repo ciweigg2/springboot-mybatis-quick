@@ -1,13 +1,33 @@
 server:
   port: 8080
 spring:
-  # 配置数据源
   datasource:
+    # Diboot需要配置的url 必须配置spring.datasource.url 他写固定了我也没办法 那就随便配置下咯 后面会根据动态数据源加载
+    url: 不用改这个
+dynamic:
+  master:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3309/test?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2b8&allowPublicKeyRetrieval=true
+    # Diboot需要配置的url 必须配置spring.datasource.url如果使用mybati-plus动态数据源的yml默认加载 这边url也要配置但是可以随便写的
+    url: jdbc:mysql://127.0.0.1:3309/bl2?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2b8&allowPublicKeyRetrieval=true
     username: root
     password: 123456
-    type: com.alibaba.druid.pool.DruidDataSource
+#spring:
+#  datasource:
+    # Diboot需要配置的url避免报错可以随便配置的
+#    url: diboot url
+#    dynamic:
+#      primary: master #设置默认的数据源或者数据源组,默认值即为master
+#      datasource:
+#        master:
+#          username: root
+#          password: 123456
+#          driver-class-name: com.mysql.cj.jdbc.Driver
+#          url: jdbc:mysql://127.0.0.1:3309/bl2?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2b8&allowPublicKeyRetrieval=true
+#        slave_1:
+#          username: root
+#          password: 123456
+#          driver-class-name: com.mysql.cj.jdbc.Driver
+#          url: jdbc:mysql://127.0.0.1:3309/bl3?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2b8&allowPublicKeyRetrieval=true
 # mybatis-plus相关配置
 mybatis-plus:
   # xml扫描，多个目录用逗号或者分号分隔（告诉 Mapper 所对应的 XML 文件位置）
