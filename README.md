@@ -57,3 +57,7 @@ mybatis-plus加载源码注释例子：https://gitee.com/sunyurepository/smart-d
 > diboot自动化开发参考
 
 [diboot自动化开发分支（推荐使用）](https://github.com/ciweigg2/springboot-mybatis-quick/tree/diboot%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91)
+
+> mybatis-plus动态数据源参考
+
+[mybatis-plus动态数据源](https://github.com/ciweigg2/springboot-mybatis-quick/tree/mybatip-plus-dynamic-datasource)
