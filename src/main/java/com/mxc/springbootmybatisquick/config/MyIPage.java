@@ -1,7 +1,7 @@
 package com.mxc.springbootmybatisquick.config;
 
+import com.google.common.collect.Lists;
 import lombok.Data;
-import org.testng.collections.Lists;
 
 import java.io.Serializable;
 import java.util.List;
