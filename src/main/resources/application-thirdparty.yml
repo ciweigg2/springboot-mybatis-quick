@@ -1,0 +1,9 @@
+# 自定义配置
+una:
+  config:
+    author: Una2
+    blog-address: http://blog.una2.com
+third:
+  party:
+    url:
+      getQrCodeUrl: http://blog.ciwei2.com
