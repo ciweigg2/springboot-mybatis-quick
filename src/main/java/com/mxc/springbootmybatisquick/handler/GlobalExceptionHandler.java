@@ -6,6 +6,7 @@ import com.mxc.springbootmybatisquick.utils.ResponseView;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -88,7 +89,14 @@ public class GlobalExceptionHandler {
     public ResponseView throwableHandler(Exception exception, HttpServletRequest request) {
         log.error(MessageFormat.format("请求发生了非预期异常，出错的 url [{0}]，出错的描述为 [{1}]",
                 request.getRequestURL().toString(), exception.getMessage()), exception);
-        return ResponseView.fail(exception.getMessage());
+        String message = "";
+        //分页请求格式严格校验
+        if(exception instanceof MethodArgumentNotValidException){
+            message = ((MethodArgumentNotValidException) exception).getBindingResult().getFieldError().getDefaultMessage();
+        }else {
+            message = exception.getMessage();
+        }
+        return ResponseView.fail(message);
     }
 
 }

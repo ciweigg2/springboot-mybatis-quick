@@ -23,6 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import java.util.Arrays;
 import java.util.List;
@@ -76,7 +77,7 @@ public class DibootController {
      * @status 已发布
      */
     @PostMapping("/listWithDto")
-    public ResponseView<MyIPage<BusinessLicenseListVO>> getVOListWithDTO(@RequestBody MybatisPlusPage<BusinessLicenseDTO> mybatisPlusPage) {
+    public ResponseView<MyIPage<BusinessLicenseListVO>> getVOListWithDTO(@Valid @RequestBody MybatisPlusPage<BusinessLicenseDTO> mybatisPlusPage) {
         // DTO转换为QueryWrapper，若无@BindQuery注解默认映射为等于=条件，有注解映射为注解条件。
         QueryWrapper<BusinessLicense> queryWrapper = QueryBuilder.toQueryWrapper(mybatisPlusPage.getObject());
         // 查询当前页的Entity主表数据
@@ -101,7 +102,7 @@ public class DibootController {
      * @status 已发布
      */
     @PostMapping("/listWithDto2")
-    public ResponseView<MyIPage<UserVO>> getVOListWithDTO2(@RequestBody MybatisPlusPage<UserDTO> mybatisPlusPage) {
+    public ResponseView<MyIPage<UserVO>> getVOListWithDTO2(@Valid @RequestBody MybatisPlusPage<UserDTO> mybatisPlusPage) {
         // DTO转换为QueryWrapper，若无@BindQuery注解默认映射为等于=条件，有注解映射为注解条件。
         QueryWrapper<User> queryWrapper = QueryBuilder.toQueryWrapper(mybatisPlusPage.getObject());
         // 查询当前页的Entity主表数据
