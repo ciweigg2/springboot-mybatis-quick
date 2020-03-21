@@ -12,6 +12,7 @@ import com.mxc.springbootmybatisquick.model.dto.UserDTO;
 import com.mxc.springbootmybatisquick.model.vo.BusinessLicenseListVO;
 import com.mxc.springbootmybatisquick.model.vo.BusinessLicenseVO;
 import com.mxc.springbootmybatisquick.model.vo.UserVO;
+import com.mxc.springbootmybatisquick.mybatis.mapper.DepartmentMapper;
 import com.mxc.springbootmybatisquick.mybatis.model.BusinessLicense;
 import com.mxc.springbootmybatisquick.mybatis.model.User;
 import com.mxc.springbootmybatisquick.service.BusinessLicenseService;
@@ -46,6 +47,23 @@ public class DibootController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private DepartmentMapper departmentMapper;
+
+    /**
+     * 多表查询
+     *
+     * @return {@link ResponseView }
+     * @author Una Ma
+     * @date 2020/03/21 13:58:55
+     * @description 多表查询
+     * @status 已发布
+     */
+    @PostMapping("/multipleSelect")
+    public ResponseView multipleSelect() {
+        return ResponseView.success(departmentMapper.doList(new Page<>() ,"10001"));
+    }
 
     /**
      * 查询VO的分页数据，此例同时示例DTO自动绑定转换为QueryWrapper，查询条件为空不会拼接的 （简单版）
