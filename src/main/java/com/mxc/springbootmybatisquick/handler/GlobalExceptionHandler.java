@@ -4,6 +4,9 @@ import com.mxc.springbootmybatisquick.utils.BusinessException;
 import com.mxc.springbootmybatisquick.utils.EnumExceptionMessageWebMvc;
 import com.mxc.springbootmybatisquick.utils.ResponseView;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -14,6 +17,7 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.MessageFormat;
+import java.util.List;
 
 /**
  * @author 马秀成
@@ -89,14 +93,21 @@ public class GlobalExceptionHandler {
     public ResponseView throwableHandler(Exception exception, HttpServletRequest request) {
         log.error(MessageFormat.format("请求发生了非预期异常，出错的 url [{0}]，出错的描述为 [{1}]",
                 request.getRequestURL().toString(), exception.getMessage()), exception);
-        String message = "";
+        StringBuffer message = new StringBuffer();
         //分页请求格式严格校验
         if(exception instanceof MethodArgumentNotValidException){
-            message = ((MethodArgumentNotValidException) exception).getBindingResult().getFieldError().getDefaultMessage();
+            BindingResult bindingResult = ((MethodArgumentNotValidException) exception).getBindingResult();
+            List<ObjectError> allErrors = bindingResult.getAllErrors();
+            for (ObjectError objectError : allErrors) {
+                if(!StringUtils.isEmpty(message.toString())) {
+                    message.append("\n");
+                }
+                message.append(objectError.getDefaultMessage());
+            }
         }else {
-            message = exception.getMessage();
+            message.append(exception.getMessage());
         }
-        return ResponseView.fail(message);
+        return ResponseView.fail(message.toString());
     }
 
 }
