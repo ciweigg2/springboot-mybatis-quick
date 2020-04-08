@@ -9,5 +9,6 @@ mybatis-plus:
       # 非空判断(只对字符串类型字段,其他类型字段依然为非NULL判断)
       select-strategy: not_empty
 logging:
+  config: classpath:logback/logback-spring.xml
   level:
     com.mxc.springbootmybatisquick.mybatis.mapper: debug
