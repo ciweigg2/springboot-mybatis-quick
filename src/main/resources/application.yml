@@ -10,5 +10,6 @@ mybatis-plus:
       select-strategy: not_empty
 logging:
   config: classpath:logback/logback-spring.xml
-  level:
-    com.mxc.springbootmybatisquick.mybatis.mapper: debug
+  # 使用了logback-spring.xml所以这个配置不需要
+#  level:
+#    com.mxc.springbootmybatisquick.mybatis.mapper: debug
