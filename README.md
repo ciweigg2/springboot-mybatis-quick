@@ -39,9 +39,9 @@ Alt+U选择类或者方法上传就行了
 
 使用idea插件 EasyJavadoc 导入配置好的模板 easy_javadoc.json 点击方法/类使用command + \ 生成注释 更多功能参考官网 点击中文可以生成英文驼峰
 
-> smart-doc文档
+> EasyYapi插件
 
-暂时使用smart-doc生成postman请求例子 smart-doc生成文档并不好用推荐使用yapi 建议使用maven插件生成
+idea安装EasyYapi插件导出postman，yapi文档
 
 > Diboot自动化开发框架
 
